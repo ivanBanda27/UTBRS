@@ -11,7 +11,7 @@ class Usuario:
 
     def validar_correo(self, dominio):
 
-        while dominio not in self.correo:
+        while not self.correo.endswith(dominio):
             print("Ingrese un dominio válido.")
 
             self.nombre = input("Ingrese su nombre: ")
