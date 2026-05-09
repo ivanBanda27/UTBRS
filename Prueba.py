@@ -39,21 +39,56 @@ usuario1 = Usuario(nombre, apellido, correo)
 usuario1.validar_correo("@utb.edu.co")
 
 class Profesor(MostrarInfo):
-    def __init__(self, nombre, apellido, materia):
+    def __init__(self, nombre):
         self.nombre = nombre
-        self.apellido = apellido
-        self.materia = materia
 
     print("\n--- Lista de profesores ---\n")
 
     def mostrar_informacion(self):
-        print(f"    {self.nombre} {self.apellido}")
+        print(f" -- {self.nombre}")
 
-profesor1 = Profesor("Yuranis", "Henriquez", "POO")
-profesor2 = Profesor("Eder", "Barrios", "Cálculo Diferencial")
-profesor3 = Profesor("Kelly", "Tarrá", "Inglés IV")
-
+profesor1 = Profesor("profesor 1")
+profesor2 = Profesor("profesor 2")
+profesor3 = Profesor("profesor 3")
+profesor4 = Profesor("profesor 4")
+profesor5 = Profesor("profesor 5")
+profesor6 = Profesor("profesor 6")
 
 profesor1.mostrar_informacion()
 profesor2.mostrar_informacion()
 profesor3.mostrar_informacion()
+profesor4.mostrar_informacion()
+profesor5.mostrar_informacion()
+profesor6.mostrar_informacion()
+
+seleccion_profe = int(input("\n Seleccione un profesor (1-6): "))
+
+def menu_profesor(profesor):
+    print(f"\nUTBRS                        | Mis Reseñas | {usuario1.correo} |\n")
+    print(f"\nHas seleccionado: {profesor.nombre}\n")
+    print("\n1. Ver reseñas")
+    print("2. Publicar reseñas")
+    opcion = int(input("\n Selecciona una opción: "))
+
+    if opcion == 1:
+        print("Ver reseñas")
+    elif opcion == 2:
+        print("Publicar reseñas")
+    else:
+        print("Opción inválida")
+
+
+if seleccion_profe == 1:
+    menu_profesor(profesor1)
+elif seleccion_profe == 2:
+    menu_profesor(profesor2)
+elif seleccion_profe == 3:
+    menu_profesor(profesor3)
+elif seleccion_profe == 4:
+    menu_profesor(profesor4)
+elif seleccion_profe == 5:
+    menu_profesor(profesor5)
+elif seleccion_profe == 6:
+    menu_profesor(profesor6)
+else:
+    print("Opción inválida")
