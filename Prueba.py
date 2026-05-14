@@ -99,23 +99,24 @@ def menu_profesor(profesor):
 while True:
     seleccion_profe = int(input("\nSeleccione un profesor (1-6): "))
 
-    if seleccion_profe == 1:
-        menu_profesor(profesor1)
-        break
-    elif seleccion_profe == 2:
-        menu_profesor(profesor2)
-        break
-    elif seleccion_profe == 3:
-        menu_profesor(profesor3)
-        break
-    elif seleccion_profe == 4:
-        menu_profesor(profesor4)
-        break
-    elif seleccion_profe == 5:
-        menu_profesor(profesor5)
-        break
-    elif seleccion_profe == 6:
-        menu_profesor(profesor6)
-        break
-    else:
-        print("\nOpción inválida")
+    match seleccion_profe:
+        case 1:
+            menu_profesor(profesor1)
+            break
+        case 2:
+            menu_profesor(profesor2)
+            break
+        case 3:
+            menu_profesor(profesor3)
+            break
+        case 4:
+            menu_profesor(profesor4)
+            break
+        case 5:
+            menu_profesor(profesor5)
+            break
+        case 6:
+            menu_profesor(profesor6)
+            break
+        case _:
+            print("\nOpción inválida")
