@@ -5,7 +5,7 @@ class MostrarInfo(ABC):
     def mostrar_informacion(self):
         pass
 
-class Usuario(MostrarInfo): #Permitir a los estudiantes acceder con su correo institucional.
+class Usuario(MostrarInfo):
     def __init__(self, nombre, apellido, correo):
         self.nombre = nombre
         self.apellido = apellido
@@ -17,15 +17,12 @@ class Usuario(MostrarInfo): #Permitir a los estudiantes acceder con su correo in
         print(f"Correo: {self.correo}")
 
     def validar_correo(self, dominio):
-
         while not self.correo.endswith(dominio):
             print("Ingrese un dominio válido.")
-
             self.nombre = input("Ingrese su nombre: ")
             self.apellido = input("Ingrese su apellido: ")
             self.correo = input("Ingrese su correo: ")
 
-        
         self.mostrar_informacion()
         print(f"\n----- Bienvenido/a {self.nombre} -----\n")
         print(f"\nUTBRS                        | Mis Reseñas | {self.correo} |\n")
@@ -36,6 +33,7 @@ correo = input("Ingrese su correo: ")
 
 usuario1 = Usuario(nombre, apellido, correo)
 usuario1.validar_correo("@utb.edu.co")
+
 class Profesor(MostrarInfo):
     def __init__(self, nombre):
         self.nombre = nombre
@@ -44,6 +42,26 @@ class Profesor(MostrarInfo):
 
     def mostrar_informacion(self):
         print(f"  --  {self.nombre}")
+
+    def publicar_reseña(self, autor):
+        texto = input("Escribe tu reseña: ")
+
+        archivo = f"{self.nombre.lower().replace(' ', '')}.txt"
+
+        try:
+            with open(archivo, "r") as f:
+                contenido = f.read()
+                id_reseña = contenido.count("---") + 1
+        except FileNotFoundError:
+            id_reseña = 1
+
+        with open(archivo, "a") as f:
+            f.write(f"id:{id_reseña}\n")
+            f.write(f"autor:{autor}\n")
+            f.write(f"texto:{texto}\n")
+            f.write("---\n")
+
+        print(f"\nReseña publicada exitosamente.")
 
 profesor1 = Profesor("Profesor 1")
 profesor2 = Profesor("Profesor 2")
@@ -72,7 +90,7 @@ def menu_profesor(profesor):
             print("Ver reseñas")
             break
         elif opcion == 2:
-            print("Publicar reseñas")
+            profesor.publicar_reseña(usuario1.correo)
             break
         else:
             print("\nOpción inválida")
@@ -81,24 +99,23 @@ def menu_profesor(profesor):
 while True:
     seleccion_profe = int(input("\nSeleccione un profesor (1-6): "))
 
-    match seleccion_profe:
-        case 1:
-            menu_profesor(profesor1)
-            break
-        case 2:
-            menu_profesor(profesor2)
-            break
-        case 3:
-            menu_profesor(profesor3)
-            break
-        case 4:
-            menu_profesor(profesor4)
-            break
-        case 5:
-            menu_profesor(profesor5)
-            break
-        case 6:
-            menu_profesor(profesor6)
-            break
-        case _:
-            print("\nOpción inválida")
+    if seleccion_profe == 1:
+        menu_profesor(profesor1)
+        break
+    elif seleccion_profe == 2:
+        menu_profesor(profesor2)
+        break
+    elif seleccion_profe == 3:
+        menu_profesor(profesor3)
+        break
+    elif seleccion_profe == 4:
+        menu_profesor(profesor4)
+        break
+    elif seleccion_profe == 5:
+        menu_profesor(profesor5)
+        break
+    elif seleccion_profe == 6:
+        menu_profesor(profesor6)
+        break
+    else:
+        print("\nOpción inválida")
