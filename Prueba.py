@@ -37,15 +37,13 @@ usuario1.validar_correo("@utb.edu.co")
 class Profesor(MostrarInfo):
     def __init__(self, nombre):
         self.nombre = nombre
-
-    print("\n--- Lista de profesores ---\n")
+        print("\n--- Lista de profesores ---\n")
 
     def mostrar_informacion(self):
-        print(f"  --  {self.nombre}")
+        print(f" -- {self.nombre}")
 
     def publicar_reseña(self, autor):
         texto = input("Escribe tu reseña: ")
-
         archivo = f"{self.nombre.lower().replace(' ', '')}.txt"
 
         try:
@@ -77,6 +75,7 @@ profesor4.mostrar_informacion()
 profesor5.mostrar_informacion()
 profesor6.mostrar_informacion()
 
+
 def menu_profesor(profesor):
     print(f"\nUTBRS                        | Mis Reseñas | {usuario1.correo} |\n")
     print(f"\nHas seleccionado: {profesor.nombre}\n")
@@ -91,7 +90,6 @@ def menu_profesor(profesor):
             break
         elif opcion == 2:
             profesor.publicar_reseña(usuario1.correo)
-            break
         else:
             print("\nOpción inválida")
 
